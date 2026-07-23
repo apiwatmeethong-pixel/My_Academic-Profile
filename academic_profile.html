@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>โปรไฟล์วิชาการ - Academic Profile</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      /* Palette: Fresh Mint & Emerald Pastel */
+      --bg-main: #F0FDF4;          /* พื้นหลังเขียวอ่อนนุ่มนวล */
+      --sidebar-bg: #FFFFFF;
+      --card-bg: #FFFFFF;
+      --primary-green: #10B981;    /* เขียวสดใสหลัก */
+      --dark-green: #047857;       /* เขียวเข้มตัวอักษรเน้น */
+      
+      /* ชุดสีพาสเทลประกอบ */
+      --pastel-mint: #D1FAE5;     /* เขียวมิ้นต์ */
+      --pastel-lime: #ECFCCB;     /* เขียวเลมอน */
+      --pastel-blue: #E0F2FE;     /* ฟ้าสดใส */
+      --pastel-yellow: #FEF9C3;   /* เหลืองครีม */
+      --pastel-pink: #FFE4E6;     /* ชมพูอ่อน */
+
+      --text-dark: #1E293B;       /* สีตัวอักษรหลัก */
+      --text-muted: #64748B;      /* สีตัวอักษรรอง */
+      --radius-lg: 20px;
+      --radius-md: 12px;
+      --shadow-soft: 0 10px 25px -5px rgba(16, 185, 129, 0.08);
+      --border-light: #E2E8F0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Kanit', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-dark);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 280px;
+      background: var(--sidebar-bg);
+      padding: 2rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 4px 0 20px rgba(16, 185, 129, 0.05);
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .profile-card {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .avatar-wrapper {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #10B981, #84CC16);
+      padding: 4px;
+      box-shadow: 0 8px 16px rgba(16, 185, 129, 0.2);
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #fff;
+      object-fit: cover;
+    }
+
+    .profile-card h2 { 
+      font-size: 1.2rem; 
+      color: var(--text-dark); 
+      font-weight: 600;
+    }
+
+    .profile-card .subtitle { 
+      font-size: 0.85rem; 
+      color: var(--text-muted); 
+      margin-top: 0.25rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--text-muted);
+      padding: 0.7rem 1rem;
+      border-radius: var(--radius-md);
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-menu a:hover, .nav-menu a.active {
+      background: var(--pastel-mint);
+      color: var(--dark-green);
+      font-weight: 500;
+      transform: translateX(4px);
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 280px;
+      flex: 1;
+      padding: 2rem;
+      max-width: 1200px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .top-bar h1 {
+      font-size: 1.6rem;
+      color: var(--dark-green);
+      font-weight: 600;
+    }
+
+    .search-box {
+      background: #fff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: var(--shadow-soft);
+      border: 1.5px solid var(--pastel-mint);
+      width: 280px;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      font-size: 0.9rem;
+      width: 100%;
+    }
+
+    /* Hero Banner */
+    .hero-card {
+      background: linear-gradient(135deg, #059669, #34D399);
+      color: white;
+      padding: 2.5rem;
+      border-radius: var(--radius-lg);
+      margin-bottom: 2rem;
+      box-shadow: 0 15px 30px rgba(16, 185, 129, 0.2);
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.25);
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      backdrop-filter: blur(5px);
+      display: inline-block;
+    }
+
+    .hero-text h2 { 
+      font-size: 2.2rem; 
+      margin: 0.75rem 0; 
+      font-weight: 600;
+    }
+
+    .hero-text p { 
+      opacity: 0.95; 
+      margin-bottom: 1.5rem; 
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    
+    .btn {
+      text-decoration: none;
+      padding: 0.65rem 1.4rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: white; color: var(--dark-green); font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .btn-secondary { background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid rgba(255,255,255,0.4); }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      padding: 1.25rem;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      transition: transform 0.2s;
+    }
+
+    .stat-card:hover { transform: translateY(-3px); }
+    .stat-card i { font-size: 2rem; }
+    .card-green { background: var(--pastel-mint); color: #047857; }
+    .card-lime { background: var(--pastel-lime); color: #4D7C0F; }
+    .card-blue { background: var(--pastel-blue); color: #0284C7; }
+    .card-yellow { background: var(--pastel-yellow); color: #A16207; }
+
+    /* Universal Section Card (กรอบเนื้อหา) */
+    .section-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 2rem;
+      border: 1px solid rgba(16, 185, 129, 0.1);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.8rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--pastel-mint);
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      color: var(--dark-green);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+    }
+
+    .section-title i {
+      background: var(--pastel-mint);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-green);
+      font-size: 1.1rem;
+    }
+
+    /* ----------------------------------------------------
+       1. กรอบการศึกษาและการอบรม (Education & Training)
+    ---------------------------------------------------- */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .sub-frame {
+      background: #F8FAFC;
+      border: 1.5px dashed var(--pastel-mint);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+
+    .sub-frame-title {
+      font-size: 1.05rem;
+      color: var(--dark-green);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .timeline-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      position: relative;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--primary-green);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary-green);
+      box-shadow: 0 0 0 3px var(--pastel-mint);
+    }
+
+    .year-badge {
+      background: var(--pastel-lime);
+      color: #365314;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 12px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 0.3rem;
+    }
+
+    .item-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .item-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ----------------------------------------------------
+       2. กรอบประสบการณ์ทำงาน (Work Experience)
+    ---------------------------------------------------- */
+    .exp-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .exp-item-card {
+      background: #F0FDF4;
+      border: 1px solid var(--pastel-mint);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: all 0.2s;
+    }
+
+    .exp-item-card:hover {
+      background: #E6F4EA;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08);
+    }
+
+    .exp-main h4 {
+      font-size: 1.05rem;
+      color: var(--dark-green);
+      font-weight: 600;
+    }
+
+    .exp-org {
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      margin-top: 0.2rem;
+    }
+
+    .exp-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+
+    .exp-period {
+      background: #FFFFFF;
+      color: var(--dark-green);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid var(--pastel-mint);
+      white-space: nowrap;
+    }
+
+    /* ----------------------------------------------------
+       3. กรอบรางวัลแห่งความภาคภูมิใจ (Awards)
+    ---------------------------------------------------- */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .award-card {
+      background: linear-gradient(180deg, #FFFFFF, #FEF9C3);
+      border: 1px solid var(--pastel-yellow);
+      border-radius: var(--radius-md);
+      padding: 1.4rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 15px rgba(254, 249, 195, 0.5);
+    }
+
+    .award-icon-bg {
+      position: absolute;
+      right: -10px;
+      bottom: -10px;
+      font-size: 4.5rem;
+      color: rgba(234, 179, 8, 0.1);
+      pointer-events: none;
+    }
+
+    .award-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .award-icon {
+      width: 42px;
+      height: 42px;
+      background: #FEF08A;
+      color: #A16207;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .award-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #854D0E;
+      line-height: 1.4;
+    }
+
+    .award-issuer {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+    }
+
+    .award-footer {
+      margin-top: 1rem;
+      padding-top: 0.6rem;
+      border-top: 1px dashed rgba(234, 179, 8, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .award-year {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #A16207;
+      background: #FEF08A;
+      padding: 0.1rem 0.6rem;
+      border-radius: 10px;
+    }
+
+    .award-level {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Skills & Publications */
+    .skills-grid { display: flex; flex-direction: column; gap: 1rem; }
+    .progress-bar {
+      background: var(--pastel-mint);
+      height: 10px;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 0.3rem;
+    }
+    .progress {
+      background: linear-gradient(90deg, #10B981, #84CC16);
+      height: 100%;
+    }
+
+    .pub-list { display: flex; flex-direction: column; gap: 1rem; }
+    .pub-card {
+      border-left: 4px solid var(--primary-green);
+      padding: 1rem 1.2rem;
+      background: #F0FDF4;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+    .pub-card h3 { font-size: 1.05rem; margin: 0.4rem 0; color: var(--text-dark); }
+    .pub-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* Contact */
+    .contact-grid { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .contact-item { display: flex; align-items: center; gap: 0.6rem; color: var(--text-muted); font-size: 0.95rem; }
+    .contact-item i { color: var(--primary-green); font-size: 1.2rem; }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      body { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; position: relative; }
+      .main-content { margin-left: 0; padding: 1.2rem; }
+      .exp-item-card { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar Menu -->
+  <aside class="sidebar">
+    <div class="profile-card">
+      <div class="avatar-wrapper">
+        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=AcademicDoctor" alt="Doctor Profile" class="avatar">
+      </div>
+      <h2>ดร.สมชาย ใจดี</h2>
+      <p class="subtitle">นักวิจัย · นักวิชาการ · วิทยากร</p>
+    </div>
+
+    <nav class="nav-menu">
+      <a href="#about" class="active"><i class="fa-solid fa-user"></i> เกี่ยวกับฉัน</a>
+      <a href="#education"><i class="fa-solid fa-graduation-cap"></i> การศึกษา/การอบรม</a>
+      <a href="#experience"><i class="fa-solid fa-briefcase"></i> ประสบการณ์ทำงาน</a>
+      <a href="#awards"><i class="fa-solid fa-trophy"></i> รางวัลภาคภูมิใจ</a>
+      <a href="#skills"><i class="fa-solid fa-lightbulb"></i> ความรู้ความสามารถ</a>
+      <a href="#speakers"><i class="fa-solid fa-chalkboard-user"></i> ประสบการณ์วิทยากร</a>
+      <a href="#contact"><i class="fa-solid fa-envelope"></i> ติดต่อ</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- Top Search Bar -->
+    <header class="top-bar">
+      <h1>โปรไฟล์วิชาการ</h1>
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass" style="color: var(--primary-green);"></i>
+        <input type="text" id="searchInput" placeholder="ค้นหาการศึกษา, ความรู้ความสามารถ, รางวัล..." onkeyup="filterContent()">
+      </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-card" id="about">
+      <div class="hero-text">
+        <span class="badge">✨ ยินดีต้อนรับสู่โปรไฟล์วิชาการ</span>
+        <h2>ดร.สมชาย ใจดี</h2>
+        <p>มุ่งมั่นพัฒนาองค์ความรู้ทางวิชาการและงานวิจัยประยุกต์ เพื่อสร้างนวัตกรรมที่มีประโยชน์ต่อสังคมและชุมชนอย่างยั่งยืน</p>
+        <div class="hero-btns">
+          <a href="#speakers" class="btn btn-primary"><i class="fa-solid fa-chalkboard-user"></i> ประสบการณ์วิทยากร</a>
+          <a href="#contact" class="btn btn-secondary"><i class="fa-solid fa-paper-plane"></i> ติดต่อวิทยากร/งานวิจัย</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stat Highlights -->
+    <section class="stats-grid">
+      <div class="stat-card card-green">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <div>
+          <h3>ปร.ด.</h3>
+          <p>วุฒิการศึกษาสูงสุด</p>
+        </div>
+      </div>
+      <div class="stat-card card-lime">
+        <i class="fa-solid fa-file-lines"></i>
+        <div>
+          <h3>12+</h3>
+          <p>ผลงานวิจัยตีพิมพ์</p>
+        </div>
+      </div>
+      <div class="stat-card card-yellow">
+        <i class="fa-solid fa-briefcase"></i>
+        <div>
+          <h3>10 ปี</h3>
+          <p>ประสบการณ์ทำงาน</p>
+        </div>
+      </div>
+      <div class="stat-card card-blue">
+        <i class="fa-solid fa-award"></i>
+        <div>
+          <h3>6 รางวัล</h3>
+          <p>ระดับชาติ/เขต</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🎓 1. กรอบการศึกษาและการอบรม (Education & Training) -->
+    <section class="section-card searchable-item" id="education">
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-graduation-cap"></i>
+          การศึกษา และ การอบรม
+        </div>
+      </div>
+
+      <div class="edu-grid">
+        <!-- ฝั่งประวัติการศึกษา -->
+        <div class="sub-frame">
+          <div class="sub-frame-title">
+            <i class="fa-solid fa-university" style="color: var(--primary-green);"></i> ประวัติการศึกษา
+          </div>
+          <div class="timeline-list">
+            <div class="timeline-item">
+              <span class="year-badge">2558 - 2562</span>
+              <div class="item-title">ปรัชญาดุษฎีบัณฑิต (ปร.ด.) สาธารณสุขศาสตร์</div>
+              <div class="item-sub">มหาวิทยาลัยมหิดล</div>
+            </div>
+            <div class="timeline-item">
+              <span class="year-badge">2554 - 2557</span>
+              <div class="item-title">วิทยาศาสตรมหาบัณฑิต (วท.ม.) ระบาดวิทยา</div>
+              <div class="item-sub">จุฬาลงกรณ์มหาวิทยาลัย</div>
+            </div>
+            <div class="timeline-item">
+              <span class="year-badge">2550 - 2554</span>
+              <div class="item-title">วิทยาศาสตรบัณฑิต (วท.บ.) สาธารณสุขศาสตร์</div>
+              <div class="item-sub">มหาวิทยาลัยเชียงใหม่</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ฝั่งประวัติการอบรม -->
+        <div class="sub-frame">
+          <div class="sub-frame-title">
+            <i class="fa-solid fa-certificate" style="color: #84CC16;"></i> การอบรมและพัฒนาศักยภาพ
+          </div>
+          <div class="timeline-list">
+            <div class="timeline-item">
+              <span class="year-badge">2568</span>
+              <div class="item-title">หลักสูตร AI for Academic & Advanced Research</div>
+              <div class="item-sub">สถาบันนวัตกรรมดิจิทัลแห่งชาติ</div>
+            </div>
+            <div class="timeline-item">
+              <span class="year-badge">2567</span>
+              <div class="item-title">การวิเคราะห์ข้อมูลสุขภาพขั้นสูงด้วย R และ Python</div>
+              <div class="item-sub">ศูนย์ฝึกอบรมวิจัยสาธารณสุข</div>
+            </div>
+            <div class="timeline-item">
+              <span class="year-badge">2566</span>
+              <div class="item-title">การเป็นอาจารย์นิเทศก์และการวัดผลการศึกษา</div>
+              <div class="item-sub">สำนักงานคณะกรรมการการอุดมศึกษา (สออ.)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 💼 2. กรอบประสบการณ์ทำงาน (Work Experience) -->
+    <section class="section-card searchable-item" id="experience">
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-briefcase"></i>
+          ประสบการณ์ทำงาน / การดำรงตำแหน่ง
+        </div>
+      </div>
+
+      <div class="exp-cards">
+        <div class="exp-item-card">
+          <div class="exp-main">
+            <h4>อาจารย์ประจำ / นักวิชาการเชี่ยวชาญ</h4>
+            <div class="exp-org"><i class="fa-solid fa-building"></i> คณะสาธารณสุขศาสตร์ มหาวิทยาลัย...</div>
+            <div class="exp-desc">รับผิดชอบการสอนรายวิชาระบาดวิทยาและการวิจัย, ทำหน้าที่หัวหน้าโครงการวิจัยพัฒนานวัตกรรมสุขภาพชุมชน และอาจารย์ที่ปรึกษาวิทยานิพนธ์</div>
+          </div>
+          <div class="exp-period">2562 - ปัจจุบัน</div>
+        </div>
+
+        <div class="exp-item-card">
+          <div class="exp-main">
+            <h4>นักวิจัยpost-doctoral (ผู้ช่วยวิจัย)</h4>
+            <div class="exp-org"><i class="fa-solid fa-flask"></i> สถาบันวิจัยระบบสาธารณสุข (สวรส.)</div>
+            <div class="exp-desc">ร่วมออกแบบงานวิจัยเชิงสำรวจระดับชาติ บริหารจัดการฐานข้อมูลสุขภาพขนาดใหญ่ (Big Data) และจัดทำข้อเสนอเชิงนโยบาย</div>
+          </div>
+          <div class="exp-period">2558 - 2562</div>
+        </div>
+
+        <div class="exp-item-card">
+          <div class="exp-main">
+            <h4>นักวิชาการสาธารณสุขปฏิบัติการ</h4>
+            <div class="exp-org"><i class="fa-solid fa-hospital"></i> สำนักงานสาธารณสุขจังหวัด</div>
+            <div class="exp-desc">ปฏิบัติงานเฝ้าระวังโรคติดต่อ วางแผนงานส่งเสริมสุขภาพประชาชน และจัดทำสรุปรายงานสถิติสุขภาพประจำปี</div>
+          </div>
+          <div class="exp-period">2554 - 2558</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🏆 3. กรอบรางวัลแห่งความภาคภูมิใจ (Proud Awards & Achievements) -->
+    <section class="section-card searchable-item" id="awards">
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-trophy"></i>
+          รางวัลแห่งความภาคภูมิใจ
+        </div>
+      </div>
+
+      <div class="awards-grid">
+        <div class="award-card">
+          <i class="fa-solid fa-trophy award-icon-bg"></i>
+          <div>
+            <div class="award-header">
+              <div class="award-icon"><i class="fa-solid fa-crown"></i></div>
+              <div class="award-title">รางวัลนักวิจัยดีเด่นระดับชาติ</div>
+            </div>
+            <div class="award-issuer">มอบโดย สภาการวิจัยแห่งชาติ (วช.) ผลงานวิจัยนวัตกรรมสุขภาพชุมชน</div>
+          </div>
+          <div class="award-footer">
+            <span class="award-year">ประจำปี 2568</span>
+            <span class="award-level">ระดับประเทศ</span>
+          </div>
+        </div>
+
+        <div class="award-card">
+          <i class="fa-solid fa-award award-icon-bg"></i>
+          <div>
+            <div class="award-header">
+              <div class="award-icon"><i class="fa-solid fa-star"></i></div>
+              <div class="award-title">รางวัลบทความวิจัยดีเด่น (Best Paper)</div>
+            </div>
+            <div class="award-issuer">การประชุมวิชาการระดับชาติ สาธารณสุขศาสตร์ครั้งที่ 12</div>
+          </div>
+          <div class="award-footer">
+            <span class="award-year">ประจำปี 2567</span>
+            <span class="award-level">ระดับชาติ</span>
+          </div>
+        </div>
+
+        <div class="award-card">
+          <i class="fa-solid fa-medal award-icon-bg"></i>
+          <div>
+            <div class="award-header">
+              <div class="award-icon"><i class="fa-solid fa-certificate"></i></div>
+              <div class="award-title">รางวัลอาจารย์ต้นแบบด้านการสอน</div>
+            </div>
+            <div class="award-issuer">คณะสาธารณสุขศาสตร์ มหาวิทยาลัย...</div>
+          </div>
+          <div class="award-footer">
+            <span class="award-year">ประจำปี 2565</span>
+            <span class="award-level">ระดับสถาบัน</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 💡 ความรู้ความสามารถ -->
+    <section class="section-card searchable-item" id="skills">
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-lightbulb"></i>
+          ความรู้ความสามารถ
+        </div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <span>ความรู้ด้านระเบียบวิธีวิจัยและชีวสถิติขั้นสูง (Advanced Research & Biostatistics)</span>
+          <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
+        </div>
+        <div class="skill-item">
+          <span>ความสามารถด้านเทคโนโลยี นวัตกรรมดิจิทัล และ AI เพื่อการเรียนรู้</span>
+          <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+        </div>
+        <div class="skill-item">
+          <span>ทักษะการบรรยาย ถ่ายทอดความรู้ และการเป็นวิทยากรฝึกอบรม</span>
+          <div class="progress-bar"><div class="progress" style="width: 92%;"></div></div>
+        </div>
+        <div class="skill-item">
+          <span>การบริหารจัดการโครงการวิจัยและการประเมินผลเชิงระบบ</span>
+          <div class="progress-bar"><div class="progress" style="width: 88%;"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🎤 ประสบการณ์การเป็นวิทยากร -->
+    <section class="section-card searchable-item" id="speakers">
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-chalkboard-user"></i>
+          ประสบการณ์การเป็นวิทยากร
+        </div>
+      </div>
+      <div class="pub-list">
+        <article class="pub-card">
+          <span class="badge" style="background: var(--primary-green); color: white; margin-bottom: 0.3rem;">2569</span>
+          <h3>วิทยากรบรรยายหัวข้อ "การประยุกต์ใช้ AI ในการวิเคราะห์ข้อมูลและงานวิชาการ"</h3>
+          <p><i class="fa-solid fa-building"></i> จัดโดย สถาบันนวัตกรรมดิจิทัลแห่งชาติ ร่วมกับ ศูนย์ฝึกอบรมวิจัย</p>
+          <p><i class="fa-solid fa-users"></i> กลุ่มเป้าหมาย: อาจารย์ นักวิจัย และบุคลากรทางการศึกษา (200+ คน)</p>
+        </article>
+        <article class="pub-card">
+          <span class="badge" style="background: var(--primary-green); color: white; margin-bottom: 0.3rem;">2568</span>
+          <h3>วิทยากรการอบรมเชิงปฏิบัติการ "การพัฒนานวัตกรรมสุขภาพชุมชนอย่างยั่งยืน"</h3>
+          <p><i class="fa-solid fa-building"></i> จัดโดย สำนักงานสาธารณสุขจังหวัด และภาคีเครือข่ายสุขภาพ</p>
+          <p><i class="fa-solid fa-users"></i> กลุ่มเป้าหมาย: บุคลากรสาธารณสุขและผู้นำชุมชน</p>
+        </article>
+        <article class="pub-card">
+          <span class="badge" style="background: var(--primary-green); color: white; margin-bottom: 0.3rem;">2567</span>
+          <h3>Keynote Speaker หัวข้อ "Digital Health & Modern Academic Tools"</h3>
+          <p><i class="fa-solid fa-building"></i> การประชุมวิชาการระดับชาติ สาธารณสุขศาสตร์ครั้งที่ 12</p>
+          <p><i class="fa-solid fa-users"></i> กลุ่มเป้าหมาย: นักวิชาการและผู้เชี่ยวชาญระดับชาติ</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ติดต่อ -->
+    <section class="section-card searchable-item" id="contact">
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-envelope"></i>
+          ช่องทางการติดต่อ
+        </div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item"><i class="fa-solid fa-envelope"></i> somchai@example.com</div>
+        <div class="contact-item"><i class="fa-solid fa-phone"></i> 081-234-5678</div>
+        <div class="contact-item"><i class="fa-solid fa-location-dot"></i> กรุงเทพมหานคร, ประเทศไทย</div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Realtime Search Filter
+    function filterContent() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const items = document.querySelectorAll('.searchable-item');
+
+      items.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        if (text.includes(input)) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    }
+
+    // Smooth Scrolling & Active Menu Navigation
+    document.querySelectorAll('.nav-menu a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+        this.classList.add('active');
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
